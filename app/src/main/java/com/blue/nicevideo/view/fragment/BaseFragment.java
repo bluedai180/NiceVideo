@@ -1,6 +1,9 @@
 package com.blue.nicevideo.view.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 /**
  * Created by huanggecheng on 2017/10/9.
@@ -8,4 +11,5 @@ import android.app.Fragment;
  */
 
 public class BaseFragment extends Fragment{
+    protected Activity mContext;
 }

@@ -1,6 +1,7 @@
 package com.blue.videosdk.okhttp;
 
 import com.blue.videosdk.okhttp.https.HttpsUtils;
+import com.blue.videosdk.okhttp.listener.DisposeDataHandle;
 import com.blue.videosdk.okhttp.response.CommonJsonCallback;
 
 import java.util.concurrent.TimeUnit;
@@ -53,4 +54,22 @@ public class CommonOkHttpClient {
         call.enqueue(commCallback);
         return call;
     }
+
+    public static Call get(Request request, DisposeDataHandle handle) {
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new CommonJsonCallback(handle));
+        return call;
+    }
+
+    public static Call post(Request request, DisposeDataHandle handle) {
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new CommonJsonCallback(handle));
+        return call;
+    }
+
+//    public static Call downloadFile(Request request, DisposeDataHandle handle) {
+//        Call call = mOkHttpClient.newCall(request);
+//        call.enqueue(new CommonFileCallback(handle));
+//        return call;
+//    }
 }

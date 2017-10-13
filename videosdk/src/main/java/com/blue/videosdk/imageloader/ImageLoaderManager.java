@@ -3,6 +3,7 @@ package com.blue.videosdk.imageloader;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.blue.videosdk.R;
@@ -31,7 +32,7 @@ public class ImageLoaderManager {
     private static ImageLoader mImageLoader = null;
     private static ImageLoaderManager mInstance = null;
 
-    private static ImageLoaderManager getmInstance(Context context) {
+    public static ImageLoaderManager getInstance(Context context) {
         if (mInstance == null) {
             synchronized (ImageLoaderManager.class) {
                 if (mInstance == null) {
