@@ -21,7 +21,7 @@ import com.blue.nicevideo.home.HomeHeaderLayout;
 import com.blue.nicevideo.module.recommand.BaseRecommandModel;
 import com.blue.nicevideo.network.http.RequestCenter;
 import com.blue.nicevideo.view.fragment.BaseFragment;
-import com.blue.nicevideo.zxing.app.CaptureActivity;
+import com.blue.videosdk.zxing.app.CaptureActivity;
 import com.blue.videosdk.okhttp.listener.DisposeDataListener;
 
 /**
@@ -144,6 +144,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             case REQUEST_QRCODE:
                 if (resultCode == Activity.RESULT_OK) {
                     String code = data.getStringExtra("SCAN_RESULT");
+                    Log.d("bluedai", "onActivityResult: " + code);
                 }
                 break;
         }
