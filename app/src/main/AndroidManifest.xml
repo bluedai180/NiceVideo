@@ -45,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.base.BaseActivity"></activity>
+        <activity android:name=".zxing.app.CaptureActivity"></activity>
     </application>
 
 </manifest>

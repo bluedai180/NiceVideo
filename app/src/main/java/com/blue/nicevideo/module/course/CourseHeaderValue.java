@@ -1,6 +1,6 @@
 package com.blue.nicevideo.module.course;
 
-//import com.youdu.module.AdValue;
+//import com.blue.nicevideo.module.AdValue;
 import com.blue.nicevideo.module.BaseModel;
 
 import java.util.ArrayList;

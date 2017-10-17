@@ -1,5 +1,7 @@
 package com.blue.nicevideo.view.fragment.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,10 +16,12 @@ import android.widget.TextView;
 
 import com.blue.nicevideo.R;
 import com.blue.nicevideo.adapter.CourseAdapter;
+import com.blue.nicevideo.constant.Constant;
 import com.blue.nicevideo.home.HomeHeaderLayout;
 import com.blue.nicevideo.module.recommand.BaseRecommandModel;
 import com.blue.nicevideo.network.http.RequestCenter;
 import com.blue.nicevideo.view.fragment.BaseFragment;
+import com.blue.nicevideo.zxing.app.CaptureActivity;
 import com.blue.videosdk.okhttp.listener.DisposeDataListener;
 
 /**
@@ -37,6 +41,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     private BaseRecommandModel mRecommandData;
     private CourseAdapter mAdapter;
+
+    private static final int REQUEST_QRCODE = 0x01;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,11 +116,36 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.qrcode_view:
+                if (hasPermission(Constant.HARDWEAR_CAMERA_PERMISSION)) {
+                    doOpenCamera();
+                } else {
+                    requestPermission(Constant.HARDWEAR_CAMERA_CODE, Constant.HARDWEAR_CAMERA_PERMISSION);
+                }
+                break;
+        }
+    }
 
+    @Override
+    public void doOpenCamera() {
+        Intent intent = new Intent(mContext, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_QRCODE);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_QRCODE:
+                if (resultCode == Activity.RESULT_OK) {
+                    String code = data.getStringExtra("SCAN_RESULT");
+                }
+                break;
+        }
     }
 }
